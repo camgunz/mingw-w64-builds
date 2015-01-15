@@ -1,0 +1,17 @@
+--- bzip2-1.0.6/bzlib.h.orig	2015-01-12 14:43:39 -0500
++++ bzip2-1.0.6/bzlib.h	2015-01-12 14:44:11 -0500
+@@ -45,6 +45,14 @@
+ #define BZ_OUTBUFF_FULL      (-8)
+ #define BZ_CONFIG_ERROR      (-9)
+ 
++#ifdef __MINGW32__
++#include <io.h>
++#ifndef HAVE_FSEEKO
++#define ftello ftell   
++#define fseeko fseek   
++#endif
++#endif
++
+ typedef 
+    struct {
+       char *next_in;

@@ -1,0 +1,46 @@
+--- zlib-1.2.8/win32/Makefile.gcc.orig	2015-01-12 08:47:23 -0500
++++ zlib-1.2.8/win32/Makefile.gcc	2015-01-12 08:48:31 -0500
+@@ -41,28 +41,28 @@
+ #LOC = -DASMV
+ #LOC = -DDEBUG -g
+ 
+-PREFIX =
+-CC = $(PREFIX)gcc
+-CFLAGS = $(LOC) -O3 -Wall
++PREFIX ?=
++CC ?= $(PREFIX)gcc
++CFLAGS += $(LOC) -O3 -Wall
+ 
+-AS = $(CC)
+-ASFLAGS = $(LOC) -Wall
++AS ?= $(CC)
++ASFLAGS += $(LOC) -Wall
+ 
+-LD = $(CC)
+-LDFLAGS = $(LOC)
++LD ?= $(CC)
++LDFLAGS += $(LOC)
+ 
+-AR = $(PREFIX)ar
+-ARFLAGS = rcs
++AR ?= $(PREFIX)ar
++ARFLAGS ?= rcs
+ 
+-RC = $(PREFIX)windres
+-RCFLAGS = --define GCC_WINDRES
++RC ?= $(PREFIX)windres
++RCFLAGS ?= --define GCC_WINDRES
+ 
+-STRIP = $(PREFIX)strip
++STRIP ?= $(PREFIX)strip
+ 
+-CP = cp -fp
++CP ?= cp -fp
+ # If GNU install is available, replace $(CP) with install.
+-INSTALL = $(CP)
+-RM = rm -f
++INSTALL ?= $(CP)
++RM ?= rm -f
+ 
+ prefix ?= /usr/local
+ exec_prefix = $(prefix)

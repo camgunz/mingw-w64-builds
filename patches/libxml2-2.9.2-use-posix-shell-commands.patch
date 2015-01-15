@@ -1,0 +1,106 @@
+--- libxml2-2.9.2/win32/Makefile.mingw.orig	2015-01-09 16:06:52 -0500
++++ libxml2-2.9.2/win32/Makefile.mingw	2015-01-09 16:07:47 -0500
+@@ -156,7 +156,8 @@
+ 	$(XML_INTDIR)/xmlwriter.o\
+ 	$(XML_INTDIR)/xpath.o\
+ 	$(XML_INTDIR)/xpointer.o\
+-	$(XML_INTDIR)/xmlstring.o
++	$(XML_INTDIR)/xmlstring.o\
++	$(XML_INTDIR)/xzlib.o
+ 
+ XML_SRCS = $(subst .o,.c,$(subst $(XML_INTDIR)/,$(XML_SRCDIR)/,$(XML_OBJS)))
+ 
+@@ -204,7 +205,8 @@
+ 	$(XML_INTDIR_A)/xmlwriter.o\
+ 	$(XML_INTDIR_A)/xpath.o\
+ 	$(XML_INTDIR_A)/xpointer.o\
+-	$(XML_INTDIR_A)/xmlstring.o
++	$(XML_INTDIR_A)/xmlstring.o\
++	$(XML_INTDIR_A)/xzlib.o
+ 
+ XML_SRCS_A = $(subst .o,.c,$(subst $(XML_INTDIR_A)/,$(XML_SRCDIR)/,$(XML_OBJS_A)))
+ 
+@@ -250,34 +252,33 @@
+ utils : $(UTILS)
+ 
+ clean :
+-	cmd.exe /C "if exist $(XML_INTDIR) rmdir /S /Q $(XML_INTDIR)"
+-	cmd.exe /C "if exist $(XML_INTDIR_A) rmdir /S /Q $(XML_INTDIR_A)"
+-	cmd.exe /C "if exist $(UTILS_INTDIR) rmdir /S /Q $(UTILS_INTDIR)"
+-	cmd.exe /C "if exist $(BINDIR) rmdir /S /Q $(BINDIR)"
+-	cmd.exe /C "if exist depends.mingw del depends.mingw"
++	rm -rf $(XML_INTDIR)
++	rm -rf $(XML_INTDIR_A)
++	rm -rf $(UTILS_INTDIR)
++	rm -rf $(BINDIR)
++	rm -f depends.mingw
+ 
+ distclean : clean
+-	cmd.exe /C "if exist config.* del config.*"
+-	cmd.exe /C "if exist Makefile del Makefile"
++	rm -f config.h
++	rm -f Makefile
+ 
+ rebuild : clean all
+ 
+ install-libs : all
+-	cmd.exe /C "if not exist $(INCPREFIX)\libxml2 mkdir $(INCPREFIX)\libxml2"
+-	cmd.exe /C "if not exist $(INCPREFIX)\libxml2\libxml mkdir $(INCPREFIX)\libxml2\libxml"
+-	cmd.exe /C "if not exist $(BINPREFIX) mkdir $(BINPREFIX)"
+-	cmd.exe /C "if not exist $(LIBPREFIX) mkdir $(LIBPREFIX)"
+-	cmd.exe /C "copy $(XML_SRCDIR)\include\libxml\*.h $(INCPREFIX)\libxml2\libxml"
+-	cmd.exe /C "copy $(BINDIR)\$(XML_SO) $(SOPREFIX)"
+-	cmd.exe /C "copy $(BINDIR)\$(XML_A) $(LIBPREFIX)"
+-	cmd.exe /C "copy $(BINDIR)\$(XML_IMP) $(LIBPREFIX)"
+-	cmd.exe /C "copy $(BINDIR)\xml*.exe $(BINPREFIX)"
++	mkdir -p $(INCPREFIX)/libxml2/libxml
++	mkdir -p $(BINPREFIX)
++	mkdir -p $(LIBPREFIX)
++	cp $(XML_SRCDIR)/include/libxml/*.h $(INCPREFIX)/libxml2/libxml
++	cp $(BINDIR)/$(XML_SO) $(SOPREFIX)
++	cp $(BINDIR)/$(XML_A) $(LIBPREFIX)
++	cp $(BINDIR)/$(XML_IMP) $(LIBPREFIX)
++	cp $(BINDIR)/xml*.exe $(BINPREFIX)
+ 
+ install : install-libs
+-	cmd.exe /C "copy $(BINDIR)\*.exe $(BINPREFIX)"
++	cp $(BINDIR)/*.exe $(BINPREFIX)
+ 
+ install-dist : install-libs
+-	cmd.exe /C "copy $(BINDIR)\xml*.exe $(BINPREFIX)"
++	cp $(BINDIR)/xml*.exe $(BINPREFIX)
+ 
+ # This is a target for me, to make a binary distribution. Not for the public use,
+ # keep your hands off :-)
+@@ -292,19 +293,17 @@
+ dep :
+ 	$(CC) $(CFLAGS) -M $(XML_SRCS) > depends.mingw
+ 
+-
+ # Makes the output directory.
+ $(BINDIR) :
+-	cmd.exe /C if not exist $(BINDIR) mkdir $(BINDIR)
+-
++	mkdir -p $(BINDIR)
+ 
+ # Makes the libxml intermediate directory.
+ $(XML_INTDIR) :
+-	cmd.exe /C if not exist $(XML_INTDIR) mkdir $(XML_INTDIR)
++	mkdir -p $(XML_INTDIR)
+ 
+ # Makes the static libxml intermediate directory.
+ $(XML_INTDIR_A) :
+-	cmd.exe /C if not exist $(XML_INTDIR_A) mkdir $(XML_INTDIR_A)
++	mkdir -p $(XML_INTDIR_A)
+ 
+ # An implicit rule for libxml compilation.
+ $(XML_INTDIR)/%.o : $(XML_SRCDIR)/%.c
+@@ -333,7 +332,7 @@
+ 
+ # Makes the utils intermediate directory.
+ $(UTILS_INTDIR) :
+-	cmd.exe /C if not exist $(UTILS_INTDIR) mkdir $(UTILS_INTDIR)
++	mkdir -p $(UTILS_INTDIR)
+ 
+ # An implicit rule for xmllint and friends.
+ ifeq ($(STATIC),1)

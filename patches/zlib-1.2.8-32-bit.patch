@@ -1,0 +1,15 @@
+--- zlib-1.2.8/win32/Makefile.gcc.orig	2015-01-09 17:30:26 -0500
++++ zlib-1.2.8/win32/Makefile.gcc	2015-01-09 17:30:35 -0500
+@@ -52,10 +52,10 @@
+ LDFLAGS = $(LOC)
+ 
+ AR = $(PREFIX)ar
+-ARFLAGS = rcs
++ARFLAGS ?= rcs
+ 
+ RC = $(PREFIX)windres
+-RCFLAGS = --define GCC_WINDRES
++RCFLAGS ?= --define GCC_WINDRES
+ 
+ STRIP = $(PREFIX)strip
+ 
