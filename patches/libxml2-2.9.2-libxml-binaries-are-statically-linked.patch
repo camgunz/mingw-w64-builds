@@ -1,0 +1,15 @@
+--- libxml2-2.9.2/include/libxml/xmlexports.h.orig	2015-01-09 10:50:45 -0500
++++ libxml2-2.9.2/include/libxml/xmlexports.h	2015-01-09 10:51:55 -0500
+@@ -118,11 +118,7 @@
+     #define XMLPUBVAR __declspec(dllexport) extern
+   #else
+     #define XMLPUBFUN
+-    #if !defined(LIBXML_STATIC)
+-      #define XMLPUBVAR __declspec(dllimport) extern
+-    #else
+-      #define XMLPUBVAR extern
+-    #endif
++    #define XMLPUBVAR extern
+   #endif
+   #define XMLCALL __cdecl
+   #define XMLCDECL __cdecl
