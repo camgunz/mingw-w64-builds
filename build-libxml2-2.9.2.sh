@@ -42,7 +42,7 @@ cscript configure.js threads=no \
                      libdir=${BUILD_DIR}/lib \
                      sodir=${BUILD_DIR}/bin \
                      || exit 1
-export CFLAGS="$CFLAGS -DHAVE_STDINT_H=1"
+export CFLAGS="$CFLAGS -DHAVE_STDINT_H=1 -DLIBXML_STATIC"
 make -f Makefile.mingw || exit 1
 make -f Makefile.mingw DESTDIR=${BUILD_DIR} install || exit 1
 popd > /dev/null

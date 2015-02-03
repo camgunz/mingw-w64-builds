@@ -6,7 +6,7 @@
 
 ./check_prereqs.sh
 
-export LD="gcc"
+export LD="${CC}"
 
 URL="http://zlib.net/zlib-1.2.8.tar.gz"
 ARCHIVE_NAME="zlib-1.2.8.tar.gz"

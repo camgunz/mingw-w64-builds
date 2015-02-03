@@ -40,7 +40,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
             --enable-static || exit 1
 
 make || exit 1
-make check || exit 1
+# make check || exit 1
 make install || exit 1
 
 popd > /dev/null

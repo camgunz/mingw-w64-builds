@@ -11,4 +11,7 @@ set -e
 ./build-libffi-3.2.1.sh
 ./build-pcre-8.35.sh
 ./build-gettext-0.19.4.sh
+./build-glib-2.42.1.sh
+./build-gobject-introspection-1.31.22.sh
+./build-lua-5.3.2.sh
 

@@ -29,22 +29,21 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
 # ./configure CFLAGS="-O2 -DXSIZE_INLINE=" \
-#             --prefix="" \
-#             --with-threads=win32 \
-#             --enable-shared \
-#             --enable-static \
-#             --with-included-libcroco \
-#             --with-included-libunistring \
-#             --with-included-libxml \
-#             --with-included-glib \
-#             || exit 1
-# if [ ! "`which no`" ]
-# then
-#     make DESTDIR=${BUILD_DIR} install || exit 1
-# else
-#     make DESTDIR=${BUILD_DIR} install || exit 1
-# fi
-
+./configure CFLAGS="-O2" \
+            CPPFLAGS="-O2" \
+            CXXFLAGS="-O2" \
+            --prefix="" \
+            --with-threads=posix \
+            --enable-shared \
+            --enable-static \
+            --with-included-libcroco \
+            --with-included-libunistring \
+            --with-included-libxml \
+            --with-included-glib \
+            || exit 1
+make || exit 1
+make DESTDIR=${BUILD_DIR} install || exit 1
 popd > /dev/null
+
 popd > /dev/null
 

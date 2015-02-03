@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL="http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.bz2"
-ARCHIVE_NAME="pcre-8.35.tar.bz2"
-TARBALL_NAME="pcre-8.35.tar"
-SOURCE_DIR_NAME="pcre-8.35"
+URL="http://ftp.gnome.org/pub/gnome/sources/glib/2.42/glib-2.42.1.tar.xz"
+ARCHIVE_NAME="glib-2.42.1.tar.xz"
+TARBALL_NAME="glib-2.42.1.tar"
+SOURCE_DIR_NAME="glib-2.42.1"
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -21,17 +21,15 @@ then
     rm -rf ${SOURCE_DIR_NAME}
 fi
 
-bunzip2 ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
+xz -d ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
 tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
-./configure --prefix="" \
-            --enable-unicode-properties \
-            --enable-newline-is-any \
-            --enable-shared \
-            --enable-static || exit 1
-make DESTDIR=${BUILD_DIR} install || exit 1
+sed -i "s|#undef HAVE_IF_NAMETOINDEX|#define HAVE_IF_NAMETOINDEX 1|g" config.h.in
+./configure --prefix='' PYTHON=${MINGW64_DIR}/opt/bin/python
+make
+make DESTDIR=${BUILD_DIR} install
 
 popd > /dev/null
 popd > /dev/null
