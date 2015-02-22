@@ -30,6 +30,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 cp configure.ac configure.in
 # cp win32/Makefile.mingw win32/Makefile.mingw.orig
 patch -p1 -f -i ${PATCH_DIR}/libxml2-2.9.2-use-posix-shell-commands.patch
+patch -p1 -f -i ${PATCH_DIR}/libxml2-2.9.2-make-xml2-config-file-manually.patch
 
 pushd win32 > /dev/null
 cscript configure.js threads=no \
@@ -46,6 +47,8 @@ export CFLAGS="$CFLAGS -DHAVE_STDINT_H=1 -DLIBXML_STATIC"
 make -f Makefile.mingw || exit 1
 make -f Makefile.mingw DESTDIR=${BUILD_DIR} install || exit 1
 popd > /dev/null
+
+cp xml2-config ${BUILD_DIR}/bin/ || exit 1
 
 popd > /dev/null
 popd > /dev/null

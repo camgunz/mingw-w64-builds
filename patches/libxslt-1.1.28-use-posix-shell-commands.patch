@@ -1,0 +1,106 @@
+--- libxslt-1.1.28/win32/Makefile.mingw	2015-02-03 15:03:23 -0500
++++ libxslt-1.1.28/win32/Makefile.mingw	2015-02-03 15:11:02 -0500
+@@ -153,37 +153,37 @@
+ utils : $(UTILS)
+ 
+ clean :
+-	cmd.exe /C if exist $(XSLT_INTDIR) rmdir /S /Q $(XSLT_INTDIR)
+-	cmd.exe /C if exist $(XSLT_INTDIR_A) rmdir /S /Q $(XSLT_INTDIR_A)
+-	cmd.exe /C if exist $(EXSLT_INTDIR) rmdir /S /Q $(EXSLT_INTDIR)
+-	cmd.exe /C if exist $(EXSLT_INTDIR_A) rmdir /S /Q $(EXSLT_INTDIR_A)
+-	cmd.exe /C if exist $(UTILS_INTDIR) rmdir /S /Q $(UTILS_INTDIR)
+-	cmd.exe /C if exist $(BINDIR) rmdir /S /Q $(BINDIR)
+-	cmd.exe /C if exist depends.mingw del depends.mingw
++	rmdir $(XSLT_INTDIR)
++	rmdir $(XSLT_INTDIR_A)
++	rmdir $(EXSLT_INTDIR)
++	rmdir $(EXSLT_INTDIR_A)
++	rmdir $(UTILS_INTDIR)
++	rmdir $(BINDIR)
++	rm -f depends.mingw
+ 
+ rebuild : clean all
+ 
+ distclean : clean
+-	cmd.exe /C if exist config.* del config.*
+-	cmd.exe /C if exist depends.* del depends.*
+-	cmd.exe /C if exist Makefile del Makefile
++	rm -f config.*
++	rm -f depends.*
++	rm -f Makefile
+ 
+ install-libs : all
+-	cmd.exe /C if not exist $(INCPREFIX)\$(XSLT_BASENAME) mkdir $(INCPREFIX)\$(XSLT_BASENAME)
+-	cmd.exe /C if not exist $(INCPREFIX)\$(EXSLT_BASENAME) mkdir $(INCPREFIX)\$(EXSLT_BASENAME)
+-	cmd.exe /C if not exist $(BINPREFIX) mkdir $(BINPREFIX)
+-	cmd.exe /C if not exist $(LIBPREFIX) mkdir $(LIBPREFIX)
+-	cmd.exe /C copy $(XSLT_SRCDIR)\*.h $(INCPREFIX)\$(XSLT_BASENAME)
+-	cmd.exe /C copy $(EXSLT_SRCDIR)\*.h $(INCPREFIX)\$(EXSLT_BASENAME)
+-	cmd.exe /C copy $(BINDIR)\$(XSLT_SO) $(SOPREFIX)
+-	cmd.exe /C copy $(BINDIR)\$(XSLT_A) $(LIBPREFIX)
+-	cmd.exe /C copy $(BINDIR)\$(XSLT_IMP) $(LIBPREFIX)
+-	cmd.exe /C copy $(BINDIR)\$(EXSLT_SO) $(SOPREFIX)
+-	cmd.exe /C copy $(BINDIR)\$(EXSLT_A) $(LIBPREFIX)
+-	cmd.exe /C copy $(BINDIR)\$(EXSLT_IMP) $(LIBPREFIX)
++	mkdir -p $(INCPREFIX)\$(XSLT_BASENAME)
++	mkdir -p $(INCPREFIX)\$(EXSLT_BASENAME)
++	mkdir -p $(BINPREFIX)
++	mkdir -p $(LIBPREFIX)
++	cp $(XSLT_SRCDIR)\*.h $(INCPREFIX)\$(XSLT_BASENAME)
++	cp $(EXSLT_SRCDIR)\*.h $(INCPREFIX)\$(EXSLT_BASENAME)
++	cp $(BINDIR)\$(XSLT_SO) $(SOPREFIX)
++	cp $(BINDIR)\$(XSLT_A) $(LIBPREFIX)
++	cp $(BINDIR)\$(XSLT_IMP) $(LIBPREFIX)
++	cp $(BINDIR)\$(EXSLT_SO) $(SOPREFIX)
++	cp $(BINDIR)\$(EXSLT_A) $(LIBPREFIX)
++	cp $(BINDIR)\$(EXSLT_IMP) $(LIBPREFIX)
+ 
+ install : install-libs
+-	cmd.exe /C copy $(BINDIR)\*.exe $(BINPREFIX)
++	cp $(BINDIR)\*.exe $(BINPREFIX)
+ 
+ install-dist : install
+ 
+@@ -203,16 +203,16 @@
+ 
+ # Makes the compiler output directory.
+ $(BINDIR) :
+-	cmd.exe /C if not exist $(BINDIR) mkdir $(BINDIR)
++	mkdir $(BINDIR)
+ 
+ 
+ # Makes the libxslt intermediate directory.
+ $(XSLT_INTDIR) :
+-	cmd.exe /C if not exist $(XSLT_INTDIR) mkdir $(XSLT_INTDIR)
++	mkdir $(XSLT_INTDIR)
+ 
+ # Makes the static libxslt intermediate directory.
+ $(XSLT_INTDIR_A) :
+-	cmd.exe /C if not exist $(XSLT_INTDIR_A) mkdir $(XSLT_INTDIR_A)
++	mkdir $(XSLT_INTDIR_A)
+ 
+ # An implicit rule for libxslt compilation.
+ $(XSLT_INTDIR)/%.o : $(XSLT_SRCDIR)/%.c
+@@ -242,11 +242,11 @@
+ 
+ # Creates the libexslt intermediate directory.
+ $(EXSLT_INTDIR) :
+-	cmd.exe /C if not exist $(EXSLT_INTDIR) mkdir $(EXSLT_INTDIR)
++	mkdir $(EXSLT_INTDIR)
+ 
+ # Creates the static libexslt intermediate directory.
+ $(EXSLT_INTDIR_A) :
+-	cmd.exe /C if not exist $(EXSLT_INTDIR_A) mkdir $(EXSLT_INTDIR_A)
++	mkdir $(EXSLT_INTDIR_A)
+ 
+ # An implicit rule for libexslt compilation.
+ $(EXSLT_INTDIR)/%.o : $(EXSLT_SRCDIR)/%.c
+@@ -277,7 +277,7 @@
+ 
+ # Creates the utils intermediate directory.
+ $(UTILS_INTDIR) :
+-	cmd.exe /C if not exist $(UTILS_INTDIR) mkdir $(UTILS_INTDIR)
++	mkdir $(UTILS_INTDIR)
+ 
+ # An implicit rule for xsltproc and friends.
+ APPLIBS = $(LIBS)
