@@ -6,6 +6,8 @@
 
 ./check_prereqs.sh
 
+export XML_CATALOG_FILES="${BUILD_DIR}/etc/xml/catalog"
+
 URL="ftp://ftp.gnome.org/pub/GNOME/sources/gtk-doc/1.21/gtk-doc-1.21.tar.xz"
 ARCHIVE_NAME="gtk-doc-1.21.tar.xz"
 TARBALL_NAME="gtk-doc-1.21.tar"
@@ -31,7 +33,7 @@ export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
 ./configure --enable-shared \
             --enable-static \
             --prefix="" \
-            --with-xml-catalog=${BUILD_DIR}/bin/xmlcatalog.exe \
+            --with-xml-catalog=${BUILD_DIR}/etc/xml/docbook-xml \
             || exit 1
 make || exit 1
 make DESTDIR=${BUILD_DIR} install || exit 1

@@ -15,7 +15,7 @@ set -e
 # ./build-glib-2.42.1.sh
 # ./build-jpeg-9a.sh
 # ./build-libpng-1.5.14.sh
-./build-docbook-4.5.sh
+./build-docbook.sh
 ./build-gtk-doc-1.21.sh
 ./build-ragel-6.9.sh
 ./build-freetype-2.5.5.sh

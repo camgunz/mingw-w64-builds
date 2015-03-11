@@ -5,7 +5,7 @@ export ARCHIVE_DIR=${BASE_DIR}/archives
 export SOURCE_DIR=${BASE_DIR}/source
 export PATCH_DIR=${BASE_DIR}/patches
 export BUILD_DIR=${BASE_DIR}/build
-export PATH=$PATH:${BUILD_DIR}/bin
+export PATH=${BUILD_DIR}/bin:$PATH
 
 export MINGW64_DIR='C:/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
 
