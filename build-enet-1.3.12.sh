@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='http://enet.bespin.org/download/enet-1.3.12.tar.gz'
+ARCHIVE_NAME='enet-1.3.12.tar.gz'
+TARBALL_NAME='enet-1.3.12.tar'
+SOURCE_DIR_NAME='enet-1.3.12'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1

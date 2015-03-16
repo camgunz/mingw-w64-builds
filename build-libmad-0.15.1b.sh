@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='ftp://ftp.mars.org/pub/mpeg/libmad-0.15.1b.tar.gz'
+ARCHIVE_NAME='libmad-0.15.1b.tar.gz'
+TARBALL_NAME='libmad-0.15.1b.tar'
+SOURCE_DIR_NAME='libmad-0.15.1b'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -31,8 +31,14 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
     --enable-static \
     --prefix="" \
     || exit 1
-make -j 1
-make DESTDIR=${BUILD_DIR} install
+make -j 1 || exit 1
+
+$CC $CFLAGS -shared .libs/*.o -o .libs/libmad.dll \
+  -Xlinker --out-implib \
+  -Xlinker .libs/libmad.dll.a \
+  || exit 1
+
+make DESTDIR=${BUILD_DIR} install || exit 1
 
 popd > /dev/null
 popd > /dev/null

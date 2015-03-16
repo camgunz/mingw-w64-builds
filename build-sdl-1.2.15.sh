@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='https://www.libsdl.org/release/SDL-1.2.15.tar.gz'
+ARCHIVE_NAME='SDL-1.2.15.tar.gz'
+TARBALL_NAME='SDL-1.2.15.tar'
+SOURCE_DIR_NAME='SDL-1.2.15'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -30,6 +30,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
     --enable-shared \
     --enable-static \
     --prefix="" \
+    --enable-directx \
     || exit 1
 make -j 1
 make DESTDIR=${BUILD_DIR} install

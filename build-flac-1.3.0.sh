@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='http://downloads.xiph.org/releases/flac/flac-1.3.0.tar.xz'
+ARCHIVE_NAME='flac-1.3.0.tar.xz'
+TARBALL_NAME='flac-1.3.0.tar'
+SOURCE_DIR_NAME='flac-1.3.0'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -21,7 +21,7 @@ then
     rm -rf ${SOURCE_DIR_NAME}
 fi
 
-gunzip ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
+xz -d ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
 tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 

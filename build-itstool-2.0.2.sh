@@ -6,10 +6,14 @@
 
 ./check_prereqs.sh
 
-URL="http://tukaani.org/xz/xz-5.2.0.tar.bz2"
-ARCHIVE_NAME="xz-5.2.0.tar.bz2"
-TARBALL_NAME="xz-5.2.0.tar"
-SOURCE_DIR_NAME="xz-5.2.0"
+export PYTHON="${MINGW64_DIR}/opt/bin/python"
+export PATH="${MINGW64_DIR}/opt/bin:$PATH"
+export PYTHONPATH="${MINGW64_DIR}/opt/lib/python2.7/site-packages/libxmlmods"
+
+URL='http://files.itstool.org/itstool/itstool-2.0.2.tar.bz2'
+ARCHIVE_NAME='itstool-2.0.2.tar.bz2'
+TARBALL_NAME='itstool-2.0.2.tar'
+SOURCE_DIR_NAME='itstool-2.0.2'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -26,14 +30,9 @@ tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
-./configure \
-    --enable-shared \
-    --enable-static \
-    --disable-assembler \
-    --prefix="" \
-    || exit 1
-make -j 1
-make DESTDIR=${BUILD_DIR} install
+./configure --prefix="" || exit 1
+make -j 1 || exit 1
+make DESTDIR=${BUILD_DIR} install || exit 1
 
 popd > /dev/null
 popd > /dev/null

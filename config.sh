@@ -7,7 +7,8 @@ export PATCH_DIR=${BASE_DIR}/patches
 export BUILD_DIR=${BASE_DIR}/build
 export PATH=${BUILD_DIR}/bin:$PATH
 
-export MINGW64_DIR='C:/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
+# export MINGW64_DIR='C:/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
+export MINGW64_DIR='/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
 
 export AR="${MINGW64_DIR}/bin/ar"
 export AS="${MINGW64_DIR}/bin/as"

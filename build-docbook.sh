@@ -10,7 +10,7 @@ export XML_CATALOG_FILES="${BUILD_DIR}/etc/xml/catalog"
 
 XMLCATALOG="${BUILD_DIR}/bin/xmlcatalog -v -v"
 
-URL='http://downloads.sourceforge.net/docbook-xsl-1.78.1.tar.bz2'
+URL='http://downloads.sourceforge.net/docbook/docbook-xsl-1.78.1.tar.bz2'
 ARCHIVE_NAME='docbook-xsl-1.78.1.tar.bz2'
 TARBALL_NAME='docbook-xsl-1.78.1.tar'
 SOURCE_DIR_NAME='docbook-xsl-1.78.1'
@@ -459,6 +459,7 @@ ${XMLCATALOG} --add 'delegateURI' \
 
 pushd ${SOURCE_DIR} > /dev/null
 pushd ${SOURCE_DIR_NAME} > /dev/null
+echo `pwd`
 
 install -dm755 ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1
 install -m644 VERSION VERSION.xsl ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1

@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='https://webp.googlecode.com/files/libwebp-0.4.0.tar.gz'
+ARCHIVE_NAME='libwebp-0.4.0.tar.gz'
+TARBALL_NAME='libwebp-0.4.0.tar'
+SOURCE_DIR_NAME='libwebp-0.4.0'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
@@ -26,6 +26,12 @@ tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
+
+cp ${BUILD_DIR}/lib/liblzma.la /lib/liblzma.la
+cp ${BUILD_DIR}/lib/libjpeg.la /lib/libjpeg.la
+cp ${BUILD_DIR}/lib/liblzma.dll.a /lib/liblzma.dll.a
+cp ${BUILD_DIR}/lib/libjpeg.dll.a /lib/libjpeg.dll.a
+
 ./configure \
     --enable-shared \
     --enable-static \

@@ -38,6 +38,9 @@ export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
 make || exit 1
 make DESTDIR=${BUILD_DIR} install || exit 1
 
+cp ${BUILD_DIR}/share/aclocal/gtk-doc.m4 /share/aclocal/gtk-doc.m4 || exit 1
+cp -R ${BUILD_DIR}/share/gtk-doc /share/ || exit 1
+
 popd > /dev/null
 popd > /dev/null
 

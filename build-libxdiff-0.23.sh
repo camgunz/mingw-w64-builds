@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='http://www.xmailserver.org/libxdiff-0.23.tar.gz'
+ARCHIVE_NAME='libxdiff-0.23.tar.gz'
+TARBALL_NAME='libxdiff-0.23.tar'
+SOURCE_DIR_NAME='libxdiff-0.23'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1

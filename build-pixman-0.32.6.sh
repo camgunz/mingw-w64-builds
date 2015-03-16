@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL='ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz'
-ARCHIVE_NAME='tiff-4.0.3.tar.gz'
-TARBALL_NAME='tiff-4.0.3.tar'
-SOURCE_DIR_NAME='tiff-4.0.3'
+URL='http://cairographics.org/releases/pixman-0.32.6.tar.gz'
+ARCHIVE_NAME='pixman-0.32.6.tar.gz'
+TARBALL_NAME='pixman-0.32.6.tar'
+SOURCE_DIR_NAME='pixman-0.32.6'
 
 pushd ${ARCHIVE_DIR} > /dev/null
 curl --retry 5 --remote-name -L ${URL} || exit 1
