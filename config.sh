@@ -26,7 +26,7 @@ export WINDRES="${MINGW64_DIR}/bin/windres"
 
 export PREFIX=""
 export CFLAGS="-I${BUILD_DIR}/include -I${BUILD_DIR}/include -I${MINGW64_DIR}/include"
-export CPPFLAGS="-I${BUILD_DIR}/include"
+export CPPFLAGS="-I${BUILD_DIR}/include -I${BUILD_DIR}/include -I${MINGW64_DIR}/include"
 export CXXFLAGS="-I${BUILD_DIR}/include"
 export LDFLAGS="-L${BUILD_DIR}/bin -L${BUILD_DIR}/lib"
 export PKG_CONFIG_PATH="${BUILD_DIR}/lib/pkgconfig"
@@ -36,4 +36,6 @@ export PKG_CONFIG_PATH="${BUILD_DIR}/lib/pkgconfig"
 
 export PACKAGE_TARNAME="mingw-w64-builds.tar"
 export PACKAGE_FILENAME="mingw-w64-builds.tar.xz"
+
+export PATH=.:/usr/local/bin:/mingw/bin:/bin:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/c/Users/Charlie/Apps:/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32/bin:/usr/bin
 

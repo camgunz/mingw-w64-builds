@@ -28,19 +28,7 @@ set -e
 ./build-pango-1.36.8.sh
 ./build-gobject-introspection-1.31.22.sh
 ./build-lua-5.3.2.sh
-
-# polarssl (cmake...)
-# c-ares
-# curl
-
-./build-libxdiff-0.23.sh
-./build-enet-1.3.12.sh
-
-./build-dumb-0.9.3.sh
-
-# fluidsynth (cmake...)
-# portmidi (cmake...)
-
+# LGI
 ./build-libogg-1.3.1.sh
 ./build-libvorbis-1.3.4.sh
 ./build-flac-1.3.0.sh
@@ -49,4 +37,13 @@ set -e
 ./build-sdl-1.2.15.sh
 ./build-sdl_image-1.2.12.sh
 ./build-sdl_mixer-1.2.12.sh
+./build-dumb-0.9.3.sh
+# fluidsynth (cmake...)
+# portmidi (cmake...)
+# polarssl (cmake...)
+./build-c-ares-1.10.0.sh
+./build-curl-7.41.0.sh*
+./build-json-c.sh
+./build-libxdiff-0.23.sh
+./build-enet-1.3.12.sh
 

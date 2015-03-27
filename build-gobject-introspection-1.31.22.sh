@@ -27,11 +27,24 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
 export PYTHON="${MINGW64_DIR}/opt/bin/python"
+export CFLAGS="-I${BUILD_DIR}/include"
+export CPPFLAGS="-I${BUILD_DIR}/include"
+export SCANNER_CFLAGS="-I${BUILD_DIR}/include"
 export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
 
-./configure
-make V=1
-make DESTDIR=${BUILD_DIR} install
+cp ${BUILD_DIR}/lib/libgobject-2.0.la /lib/libgobject-2.0.la || exit 1
+cp ${BUILD_DIR}/lib/libgmodule-2.0.la /lib/libgmodule-2.0.la || exit 1
+cp ${BUILD_DIR}/lib/libgobject-2.0.dll.a /lib/libgobject-2.0.dll.a
+cp ${BUILD_DIR}/lib/libgmodule-2.0.dll.a /lib/libgmodule-2.0.dll.a
+cp ${BUILD_DIR}/lib/libglib-2.0.dll.a /lib/libglib-2.0.dll.a
+cp ${BUILD_DIR}/lib/../lib/libffi.dll.a /lib/../lib/libffi.dll.a
+
+SCANNER_CFLAGS="-I${BUILD_DIR}/include" CFLAGS="-I${BUILD_DIR}/include" CPPFLAGS="-I${BUILD_DIR}/include" \
+    ./configure || exit 1
+SCANNER_CFLAGS="-I${BUILD_DIR}/include" CFLAGS="-I${BUILD_DIR}/include" CPPFLAGS="-I${BUILD_DIR}/include" \
+    make V=1 VERBOSE=1 || exit 1
+SCANNER_CFLAGS="-I${BUILD_DIR}/include" CFLAGS="-I${BUILD_DIR}/include" CPPFLAGS="-I${BUILD_DIR}/include" \
+    make DESTDIR=${BUILD_DIR} install || exit 1
 popd > /dev/null
 
 popd > /dev/null

@@ -6,8 +6,8 @@
 
 ./check_prereqs.sh
 
-URL="https://github.com/behdad/harfbuzz.git"
-SOURCE_DIR_NAME="harfbuzz"
+URL="https://github.com/json-c/json-c.git"
+SOURCE_DIR_NAME="json-c"
 
 pushd ${SOURCE_DIR} > /dev/null
 
@@ -19,11 +19,6 @@ fi
 git clone ${URL} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
-
-cp ${BUILD_DIR}/lib/libintl.la /lib
-cp ${BUILD_DIR}/lib/libpng15.la /lib
-cp ${BUILD_DIR}/lib/libintl.dll.a /lib
-cp ${BUILD_DIR}/lib/libpng15.dll.a /lib
 
 ./autogen.sh --enable-shared \
              --enable-static \
