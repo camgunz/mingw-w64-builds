@@ -22,10 +22,9 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 
 ./autogen.sh --enable-shared \
              --enable-static \
-             --prefix="" \
              || exit 1
 make || exit 1
-make DESTDIR=${BUILD_DIR} install || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

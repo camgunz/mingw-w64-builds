@@ -29,7 +29,6 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 
 ./configure --enable-shared \
             --enable-static \
-            --prefix="" \
             --enable-aiff \
             --enable-wav \
             --enable-raw \
@@ -38,11 +37,10 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
             --enable-openal \
             --enable-win \
             --enable-xaudio2 \
-            --with-sdl-prefix=$PREFIX \
             || exit 1
 
-make -j 1 || exit 1
-make DESTDIR=${BUILD_DIR} install || exit 1
+make || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

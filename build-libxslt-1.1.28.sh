@@ -29,58 +29,37 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 
 patch -p1 -f -i ${PATCH_DIR}/libxslt-1.1.28-use-win32config-on-msys.patch
 
-cp ${SOURCE_DIR}/libxml2-2.9.2/xml2-config ${BUILD_DIR}/bin/xml2-config
-sed -i "s:prefix='':prefix='${BUILD_DIR}':g" ${BUILD_DIR}/bin/xml2-config
+cp ${SOURCE_DIR}/libxml2-2.9.2/xml2-config /bin/xml2-config
+sed -i "s:prefix='':prefix='${PREFIX}':g" /bin/xml2-config
 
-./configure --prefix='' \
-            --enable-static \
+./configure --enable-static \
             --enable-shared \
-            --with-libxml-prefix=${BUILD_DIR} \
-            --with-libxml-include-prefix=${BUILD_DIR}/include \
-            --with-libxml-libs-prefix=${BUILD_DIR}/lib \
+            || exit 1
 
 if [ $? -ne 0 ]
 then
-    sed -i "s:prefix='${BUILD_DIR}':prefix='':g" ${BUILD_DIR}/bin/xml2-config
+    sed -i "s:prefix='${PREFIX}':prefix='':g" /bin/xml2-config
     exit 1
 fi
 
-V=1 make
+make
 
 if [ $? -ne 0 ]
 then
-    sed -i "s:prefix='${BUILD_DIR}':prefix='':g" ${BUILD_DIR}/bin/xml2-config
+    sed -i "s:prefix='${PREFIX}':prefix='':g" /bin/xml2-config
     exit 1
 fi
 
-make DESTDIR=${BUILD_DIR} install
+make install
 
 if [ $? -ne 0 ]
 then
-    sed -i "s:prefix='${BUILD_DIR}':prefix='':g" ${BUILD_DIR}/bin/xml2-config
+    sed -i "s:prefix='${PREFIX}':prefix='':g" /bin/xml2-config
     exit 1
 fi
 
-sed -i "s:prefix='${BUILD_DIR}':prefix='':g" ${BUILD_DIR}/bin/xml2-config
-
-# patch -p1 -f -i ${PATCH_DIR}/libxslt-1.1.28-use-posix-shell-commands.patch
-# 
-# pushd win32 > /dev/null
-# export PYTHON="${MINGW64_DIR}/opt/bin/python"
-# export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
-# cscript configure.js prefix=${BUILD_DIR} \
-#                      bindir=${BUILD_DIR}/bin \
-#                      incdir=${BUILD_DIR}/include \
-#                      libdir=${BUILD_DIR}/lib \
-#                      sodir=${BUILD_DIR}/bin \
-#                      compiler=mingw \
-#                      static=yes \
-#                      zlib=yes \
-#                      || exit 1
-# make -f Makefile.mingw || exit 1
-# make -f Makefile.mingw DESTDIR=${BUILD_DIR} install || exit 1
-# 
-# popd > /dev/null
+sed -i "s:prefix='${PREFIX}':prefix='':g" /bin/xml2-config \
+    || exit 1
 
 popd > /dev/null
 

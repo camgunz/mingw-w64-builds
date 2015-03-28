@@ -28,21 +28,17 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-bzip2recover.patch || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-slash.patch || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-bzgrep.patch || exit 1
-# patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-cygming.patch || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-buildsystem.patch || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-progress.patch || exit 1
 patch -p0 -i ${PATCH_DIR}/bzip2-1.0.6-stdio-fixes.patch || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
-autoreconf -fi
+
+autoreconf -fi || exit 1
 ./configure --enable-shared || exit 1
-make all-dll-shared
-
-# Check
+make all-dll-shared || exit 1
 make -k check
-
-# Install
-make DESTDIR=${BUILD_DIR} install
+make install
 
 popd > /dev/null
 popd > /dev/null

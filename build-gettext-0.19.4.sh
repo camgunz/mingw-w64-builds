@@ -25,14 +25,11 @@ xz -d ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
 tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
-# patch -p1 -f -i ${PATCH_DIR}/gettext-0.19.4-fix-link-errors.patch
-
 pushd ${SOURCE_DIR_NAME} > /dev/null
-# ./configure CFLAGS="-O2 -DXSIZE_INLINE=" \
+
 ./configure CFLAGS="-O2" \
             CPPFLAGS="-O2" \
             CXXFLAGS="-O2" \
-            --prefix="" \
             --with-threads=posix \
             --enable-shared \
             --enable-static \
@@ -42,8 +39,8 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
             --with-included-glib \
             || exit 1
 make || exit 1
-make DESTDIR=${BUILD_DIR} install || exit 1
-popd > /dev/null
+make install || exit 1
 
+popd > /dev/null
 popd > /dev/null
 

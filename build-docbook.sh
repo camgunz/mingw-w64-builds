@@ -6,9 +6,9 @@
 
 ./check_prereqs.sh
 
-export XML_CATALOG_FILES="${BUILD_DIR}/etc/xml/catalog"
+export XML_CATALOG_FILES="/etc/xml/catalog"
 
-XMLCATALOG="${BUILD_DIR}/bin/xmlcatalog -v -v"
+XMLCATALOG="/bin/xmlcatalog -v -v"
 
 URL='http://downloads.sourceforge.net/docbook/docbook-xsl-1.78.1.tar.bz2'
 ARCHIVE_NAME='docbook-xsl-1.78.1.tar.bz2'
@@ -31,22 +31,22 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 popd > /dev/null
 
-mkdir -p "${BUILD_DIR}/etc/xml"
+mkdir -p "/etc/xml"
 
-rm -f ${BUILD_DIR}/etc/xml/catalog \
-      ${BUILD_DIR}/etc/xml/docbook \
-      ${BUILD_DIR}/etc/xml/docbook-xml \
+rm -f /etc/xml/catalog \
+      /etc/xml/docbook \
+      /etc/xml/docbook-xml \
       || exit 1
 
-${XMLCATALOG} --noout --create "${BUILD_DIR}/etc/xml/docbook" || exit 1
-${XMLCATALOG} --noout --create "${BUILD_DIR}/etc/xml/catalog" || exit 1
-${XMLCATALOG} --noout --create "${BUILD_DIR}/etc/xml/docbook-xml" || exit 1
-rm -f ${BUILD_DIR}/docbook-xml.sav || exit 1
-rm -f ${BUILD_DIR}/docbook-xml.tmp || exit 1
-rm -f ${BUILD_DIR}/docbook-xml.tmp.2 || exit 1
-rm -f ${BUILD_DIR}/catalog.sav || exit 1
-rm -f ${BUILD_DIR}/catalog.tmp || exit 1
-rm -f ${BUILD_DIR}/catalog.tmp.2 || exit 1
+${XMLCATALOG} --noout --create "/etc/xml/docbook" || exit 1
+${XMLCATALOG} --noout --create "/etc/xml/catalog" || exit 1
+${XMLCATALOG} --noout --create "/etc/xml/docbook-xml" || exit 1
+rm -f /docbook-xml.sav || exit 1
+rm -f /docbook-xml.tmp || exit 1
+rm -f /docbook-xml.tmp.2 || exit 1
+rm -f /catalog.sav || exit 1
+rm -f /catalog.tmp || exit 1
+rm -f /catalog.tmp.2 || exit 1
 
 pushd ${SOURCE_DIR} > /dev/null
 for dtdversion in 4.1.2 4.2 4.3 4.4 4.5
@@ -102,426 +102,426 @@ done
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML CALS Table Model V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML CALS Table Model V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD XML Exchange Table Model 19990315//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/soextblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/dbpoolx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/dbhierx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Additional General Entities V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/dbgenent.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Notations V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/dbnotnx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Character Entities V4.1.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.1.2/dbcentx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteSystem' \
     "http://www.oasis-open.org/docbook/xml/4.1.2" \
     "file:///share/xml/docbook/xml-dtd-4.1.2" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteURI' \
     "http://www.oasis-open.org/docbook/xml/4.1.2" \
     "file:///share/xml/docbook/xml-dtd-4.1.2" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
 # V4.2
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook CALS Table Model V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD XML Exchange Table Model 19990315//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/soextblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Information Pool V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/dbpoolx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/dbhierx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Additional General Entities V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/dbgenent.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Notations V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/dbnotnx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Character Entities V4.2//EN" \
     "http://www.oasis-open.org/docbook/xml/4.2/dbcentx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteSystem' \
     "http://www.oasis-open.org/docbook/xml/4.2" \
     "file:///share/xml/docbook/xml-dtd-4.2" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteURI' \
     "http://www.oasis-open.org/docbook/xml/4.2" \
     "file:///share/xml/docbook/xml-dtd-4.2" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
 # V4.3
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook CALS Table Model V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD XML Exchange Table Model 19990315//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/soextblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Information Pool V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/dbpoolx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/dbhierx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Additional General Entities V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/dbgenent.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Notations V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/dbnotnx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Character Entities V4.3//EN" \
     "http://www.oasis-open.org/docbook/xml/4.3/dbcentx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteSystem' \
     "http://www.oasis-open.org/docbook/xml/4.3" \
     "file:///share/xml/docbook/xml-dtd-4.3" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteURI' \
     "http://www.oasis-open.org/docbook/xml/4.3" \
     "file:///share/xml/docbook/xml-dtd-4.3" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
 # V4.4
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook CALS Table Model V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/htmltblx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD XML Exchange Table Model 19990315//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/soextblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Information Pool V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/dbpoolx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook Document Hierarchy V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/dbhierx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Additional General Entities V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/dbgenent.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Notations V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/dbnotnx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook Character Entities V4.4//EN" \
     "http://www.oasis-open.org/docbook/xml/4.4/dbcentx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteSystem' \
     "http://www.oasis-open.org/docbook/xml/4.4" \
     "file:///share/xml/docbook/xml-dtd-4.4" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteURI' \
     "http://www.oasis-open.org/docbook/xml/4.4" \
     "file:///share/xml/docbook/xml-dtd-4.4" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
 # V4.5
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML V4.5//EN" \
     "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD DocBook XML CALS Table Model V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/calstblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//DTD XML Exchange Table Model 19990315//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/soextblx.dtd" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/dbpoolx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML Document Hierarchy V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/dbhierx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ELEMENTS DocBook XML HTML Tables V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/htmltblx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Notations V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/dbnotnx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Character Entities V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/dbcentx.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'public' \
     "-//OASIS//ENTITIES DocBook XML Additional General Entities V4.5//EN" \
     "file:///share/xml/docbook/xml-dtd-4.5/dbgenent.mod" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteSystem' \
     "http://www.oasis-open.org/docbook/xml/4.5" \
     "file:///share/xml/docbook/xml-dtd-4.5" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 ${XMLCATALOG} --add 'rewriteURI' \
     "http://www.oasis-open.org/docbook/xml/4.5" \
     "file:///share/xml/docbook/xml-dtd-4.5" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/docbook-xml.tmp \
+    "/etc/xml/docbook-xml" \
+    | tail -n 2 | head -n 1 >> /docbook-xml.tmp \
     || exit 1
 
-# if [ ! -e ${BUILD_DIR}/etc/xml/catalog ]
+# if [ ! -e /etc/xml/catalog ]
 # then
-#     ${XMLCATALOG} --noout --create ${BUILD_DIR}/etc/xml/catalog
+#     ${XMLCATALOG} --noout --create /etc/xml/catalog
 # fi
 
 ${XMLCATALOG} --add 'delegatePublic' \
     '-//OASIS//ENTITIES DocBook XML' \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/etc/xml/docbook-xml" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 ${XMLCATALOG} --add 'delegatePublic' \
     '-//OASIS//DTD DocBook XML' \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/etc/xml/docbook-xml" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 ${XMLCATALOG} --add 'delegateSystem' \
     "http://www.oasis-open.org/docbook/" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/etc/xml/docbook-xml" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 ${XMLCATALOG} --add 'delegateURI' \
     "http://www.oasis-open.org/docbook/" \
-    "${BUILD_DIR}/etc/xml/docbook-xml" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/etc/xml/docbook-xml" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 
 pushd ${SOURCE_DIR} > /dev/null
 pushd ${SOURCE_DIR_NAME} > /dev/null
 echo `pwd`
 
-install -dm755 ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1
-install -m644 VERSION VERSION.xsl ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1
+install -dm755 /share/xml/docbook/xsl-stylesheets-1.78.1
+install -m644 VERSION VERSION.xsl /share/xml/docbook/xsl-stylesheets-1.78.1
 
 for x in assembly common eclipse epub epub3 fo highlighting html htmlhelp javahelp lib \
          manpages params profiling roundtrip template website xhtml xhtml-1_1 xhtml5
 do
-    install -dm755 ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1/${x}
-    install -m644 ${x}/*.{xml,xsl,dtd,ent} ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1/${x} || true  # ignore missing files
+    install -dm755 /share/xml/docbook/xsl-stylesheets-1.78.1/${x}
+    install -m644 ${x}/*.{xml,xsl,dtd,ent} /share/xml/docbook/xsl-stylesheets-1.78.1/${x} || true  # ignore missing files
 done
 
-install -dm755 ${BUILD_DIR}/etc/xml
-install -Dm644 COPYING ${BUILD_DIR}/usr/share/licenses/docbook-xsl/LICENSE
+install -dm755 /etc/xml
+install -Dm644 COPYING /usr/share/licenses/docbook-xsl/LICENSE
 
 popd > /dev/null
 popd > /dev/null
 
 xmlcatalog --add "rewriteSystem" \
     "http://docbook.sourceforge.net/release/xsl/1.78.1" \
-    "${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 
 xmlcatalog --add "rewriteURI" \
     "http://docbook.sourceforge.net/release/xsl/1.78.1" \
-    "${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 
 xmlcatalog --add "rewriteSystem" \
     "http://docbook.sourceforge.net/release/xsl/current" \
-    "${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 
 xmlcatalog --add "rewriteURI" \
     "http://docbook.sourceforge.net/release/xsl/current" \
-    "${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1" \
-    "${BUILD_DIR}/etc/xml/catalog" \
-    | tail -n 2 | head -n 1 >> ${BUILD_DIR}/catalog.tmp \
+    "/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "/etc/xml/catalog" \
+    | tail -n 2 | head -n 1 >> /catalog.tmp \
     || exit 1
 
-echo '</catalog>' >> ${BUILD_DIR}/docbook-xml.tmp
-sed -i 's|:catalog"/>|:catalog">|g' ${BUILD_DIR}/etc/xml/docbook-xml
-cat ${BUILD_DIR}/etc/xml/docbook-xml > ${BUILD_DIR}/docbook-xml.tmp.2
-cp ${BUILD_DIR}/etc/xml/docbook-xml ${BUILD_DIR}/docbook-xml.sav
-rm -f ${BUILD_DIR}/etc/xml/docbook-xml
-cat ${BUILD_DIR}/docbook-xml.tmp >> ${BUILD_DIR}/docbook-xml.tmp.2
-# rm -f ${BUILD_DIR}/docbook-xml.tmp
-mv ${BUILD_DIR}/docbook-xml.tmp.2 ${BUILD_DIR}/etc/xml/docbook-xml
-# rm -f ${BUILD_DIR}/docbook-xml.tmp.2
+echo '</catalog>' >> /docbook-xml.tmp
+sed -i 's|:catalog"/>|:catalog">|g' /etc/xml/docbook-xml
+cat /etc/xml/docbook-xml > /docbook-xml.tmp.2
+cp /etc/xml/docbook-xml /docbook-xml.sav
+rm -f /etc/xml/docbook-xml
+cat /docbook-xml.tmp >> /docbook-xml.tmp.2
+# rm -f /docbook-xml.tmp
+mv /docbook-xml.tmp.2 /etc/xml/docbook-xml
+# rm -f /docbook-xml.tmp.2
 
-echo '</catalog>' >> ${BUILD_DIR}/catalog.tmp
-sed -i 's|:catalog"/>|:catalog">|g' ${BUILD_DIR}/etc/xml/catalog
-cat ${BUILD_DIR}/etc/xml/catalog > ${BUILD_DIR}/catalog.tmp.2
-cp ${BUILD_DIR}/etc/xml/catalog ${BUILD_DIR}/catalog.sav
-rm -f ${BUILD_DIR}/etc/xml/catalog
-cat ${BUILD_DIR}/catalog.tmp >> ${BUILD_DIR}/catalog.tmp.2
-# rm -f ${BUILD_DIR}/catalog.tmp
-mv ${BUILD_DIR}/catalog.tmp.2 ${BUILD_DIR}/etc/xml/catalog
-# rm -f ${BUILD_DIR}/catalog.tmp.2 ${BUILD_DIR}/etc/xml/catalog
+echo '</catalog>' >> /catalog.tmp
+sed -i 's|:catalog"/>|:catalog">|g' /etc/xml/catalog
+cat /etc/xml/catalog > /catalog.tmp.2
+cp /etc/xml/catalog /catalog.sav
+rm -f /etc/xml/catalog
+cat /catalog.tmp >> /catalog.tmp.2
+# rm -f /catalog.tmp
+mv /catalog.tmp.2 /etc/xml/catalog
+# rm -f /catalog.tmp.2 /etc/xml/catalog
 

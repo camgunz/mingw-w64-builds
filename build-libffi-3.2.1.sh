@@ -26,11 +26,10 @@ tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
-#             --enable-portable-binary \
-./configure --prefix="" \
-            --enable-shared \
+
+./configure --enable-shared \
             --enable-static || exit 1
-make DESTDIR=${BUILD_DIR} install || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

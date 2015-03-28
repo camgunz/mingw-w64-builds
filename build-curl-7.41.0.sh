@@ -29,17 +29,16 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 
 export CFLAGS="$CFLAGS -DCURL_STATICLIB"
 
-#             --with-polarssl=$PREFIX \
-./configure --prefix="" \
-            --enable-static \
+#             --with-polarssl \
+./configure --enable-static \
             --enable-shared \
-            --enable-ares=${BUILD_DIR} \
+            --enable-ares \
             --enable-ipv6 \
             --with-winidn \
             --disable-threaded-resolver \
             || exit 1
-make -j 1
-make DESTDIR=${BUILD_DIR} install
+make
+make install
 
 popd > /dev/null
 popd > /dev/null

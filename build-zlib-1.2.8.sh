@@ -32,9 +32,9 @@ cp ${SOURCE_DIR}/${SOURCE_DIR_NAME}/win32/Makefile.gcc \
    ${SOURCE_DIR}/${SOURCE_DIR_NAME}/win32/Makefile.gcc.orig
 patch -p1 -f -i ${PATCH_DIR}/zlib-1.2.8-fix-win32-makefile.patch || exit 1
 make -f win32/Makefile.gcc || exit 1
-cp zlib1.dll minigzip.exe ${BUILD_DIR}/bin || exit 1
-cp libz.dll.a libz.a ${BUILD_DIR}/lib || exit 1
-cp zlib.h zconf.h ${BUILD_DIR}/include || exit 1
+cp zlib1.dll minigzip.exe /bin || exit 1
+cp libz.dll.a libz.a /lib || exit 1
+cp zlib.h zconf.h /include || exit 1
 
 popd > /dev/null
 popd > /dev/null

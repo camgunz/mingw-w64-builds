@@ -30,11 +30,10 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 
 # --enable-music-fluidsynth-shared \
 
-mv ${BUILD_DIR}/lib/libSDLmain.la ${BUILD_DIR}/lib/libSDLmain.la.bak
+mv /lib/libSDLmain.la /lib/libSDLmain.la.bak
 
 ./configure --disable-static \
             --enable-shared \
-            --with-sdl-prefix=${BUILD_DIR} \
             --disable-sdltest \
             --disable-smpegtest \
             --disable-music-mp3 \
@@ -46,8 +45,8 @@ mv ${BUILD_DIR}/lib/libSDLmain.la ${BUILD_DIR}/lib/libSDLmain.la.bak
             --enable-music-flac-shared \
             --enable-music-mp3-shared \
             || exit 1
-make -j 1
-make DESTDIR=${BUILD_DIR} install
+make || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

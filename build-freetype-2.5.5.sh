@@ -28,12 +28,12 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 pushd ${SOURCE_DIR_NAME} > /dev/null
 ./configure --enable-shared \
             --enable-static \
-            --prefix="" \
             --with-zlib=yes \
             --with-png=yes \
-            --with-harfbuzz=no
-make
-make DESTDIR=${BUILD_DIR} install
+            --with-harfbuzz=no \
+            || exit 1
+make || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

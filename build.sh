@@ -12,7 +12,7 @@ set -e
 ./build-libffi-3.2.1.sh
 ./build-pcre-8.35.sh
 ./build-gettext-0.19.4.sh
-./build-glib-2.42.1.sh
+./build-glib-2.44.0.sh
 ./build-jpeg-9a.sh
 ./build-libpng-1.5.14.sh
 ./build-libtiff-4.0.3.sh
@@ -26,9 +26,9 @@ set -e
 ./build-pixman-0.32.6.sh*
 ./build-cairo-1.14.2.sh
 ./build-pango-1.36.8.sh
-./build-gobject-introspection-1.31.22.sh
+# ./build-gobject-introspection-1.44.0.sh
 ./build-lua-5.3.2.sh
-# LGI
+# ./build-lua-gobject-introspection.sh
 ./build-libogg-1.3.1.sh
 ./build-libvorbis-1.3.4.sh
 ./build-flac-1.3.0.sh
@@ -40,7 +40,7 @@ set -e
 ./build-dumb-0.9.3.sh
 # fluidsynth (cmake...)
 # portmidi (cmake...)
-# polarssl (cmake...)
+# ./build-polarssl-1.3.9.sh # (cmake...)
 ./build-c-ares-1.10.0.sh
 ./build-curl-7.41.0.sh*
 ./build-json-c.sh

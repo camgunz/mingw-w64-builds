@@ -29,10 +29,9 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 ./configure \
     --enable-shared \
     --enable-static \
-    --prefix="" \
     || exit 1
-make -j 1
-make DESTDIR=${BUILD_DIR} install
+make || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null

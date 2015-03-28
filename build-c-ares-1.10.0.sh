@@ -26,15 +26,14 @@ tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
+
 export CFLAGS=""
-./configure --prefix="" \
-            --enable-shared \
+./configure --enable-shared \
             --enable-static \
             --enable-nonblocking \
             || exit 1
-
-make -j 1 || exit 1
-make DESTDIR=${BUILD_DIR} install
+make || exit 1
+make install || exit 1
 
 popd > /dev/null
 popd > /dev/null
