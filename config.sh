@@ -5,10 +5,12 @@ export ARCHIVE_DIR=${BASE_DIR}/archives
 export SOURCE_DIR=${BASE_DIR}/source
 export PATCH_DIR=${BASE_DIR}/patches
 export BUILD_DIR=${BASE_DIR}/build
-export PATH=${BUILD_DIR}/bin:$PATH
+export PATH=$PATH:${BUILD_DIR}/bin
 
-# export MINGW64_DIR='C:/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
 export MINGW64_DIR='/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
+
+export PYTHON="${MINGW64_DIR}/opt/bin/python"
+export PYTHON_DIR="${MINGW64_DIR}/opt/bin"
 
 export AR="${MINGW64_DIR}/bin/ar"
 export AS="${MINGW64_DIR}/bin/as"
@@ -28,7 +30,7 @@ export PREFIX=""
 export CFLAGS="-I${BUILD_DIR}/include -I${BUILD_DIR}/include -I${MINGW64_DIR}/include"
 export CPPFLAGS="-I${BUILD_DIR}/include -I${BUILD_DIR}/include -I${MINGW64_DIR}/include"
 export CXXFLAGS="-I${BUILD_DIR}/include"
-export LDFLAGS="-L${BUILD_DIR}/bin -L${BUILD_DIR}/lib"
+export LDFLAGS="-L${BUILD_DIR}/bin -L${BUILD_DIR}/lib -L${PYTHON_DIR}"
 export PKG_CONFIG_PATH="${BUILD_DIR}/lib/pkgconfig"
 # export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig"
 # export PKG_CONFIG_SYSROOT_DIR="$PREFIX"
@@ -37,5 +39,10 @@ export PKG_CONFIG_PATH="${BUILD_DIR}/lib/pkgconfig"
 export PACKAGE_TARNAME="mingw-w64-builds.tar"
 export PACKAGE_FILENAME="mingw-w64-builds.tar.xz"
 
-export PATH=.:/usr/local/bin:/mingw/bin:/bin:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/c/Users/Charlie/Apps:/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32/bin:/usr/bin
+export CURL="/c/bin/curl/curl"
+export GIT="/c/bin/git/bin/git"
+
+export PATH=$PYTHON_DIR:$PATH
+
+# export PATH=.:/usr/local/bin:/mingw/bin:/bin:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/c/Users/Charlie/Apps:/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32/bin:/usr/bin
 

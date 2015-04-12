@@ -33,7 +33,7 @@ export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
 ./configure --enable-shared \
             --enable-static \
             --prefix="" \
-            --with-xml-catalog=${BUILD_DIR}/etc/xml/docbook-xml \
+            --with-xml-catalog=${BUILD_DIR}/etc/xml/catalog \
             || exit 1
 make || exit 1
 make DESTDIR=${BUILD_DIR} install || exit 1

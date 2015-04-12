@@ -6,14 +6,17 @@
 
 ./check_prereqs.sh
 
-URL="ftp://xmlsoft.org/libxslt/libxslt-1.1.28.tar.gz"
-ARCHIVE_NAME="libxslt-1.1.28.tar.gz"
-TARBALL_NAME="libxslt-1.1.28.tar"
-SOURCE_DIR_NAME="libxslt-1.1.28"
+# URL="ftp://xmlsoft.org/libxslt/libxslt-1.1.28.tar.gz"
+# ARCHIVE_NAME="libxslt-1.1.28.tar.gz"
+# TARBALL_NAME="libxslt-1.1.28.tar"
+# SOURCE_DIR_NAME="libxslt-1.1.28"
 
-pushd ${ARCHIVE_DIR} > /dev/null
-curl --retry 5 --remote-name -L ${URL} || exit 1
-popd > /dev/null
+URL="git://git.gnome.org/libxslt"
+SOURCE_DIR_NAME="libxslt"
+
+# pushd ${ARCHIVE_DIR} > /dev/null
+# curl --retry 5 --remote-name -L ${URL} || exit 1
+# popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null
 if [ -d ${SOURCE_DIR_NAME} ]
@@ -21,23 +24,28 @@ then
     rm -rf ${SOURCE_DIR_NAME}
 fi
 
-gunzip ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
-tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
-rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
+${GIT} clone ${URL}
+
+# gunzip ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
+# tar xf ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
+# rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
 
 patch -p1 -f -i ${PATCH_DIR}/libxslt-1.1.28-use-win32config-on-msys.patch
 
-cp ${SOURCE_DIR}/libxml2-2.9.2/xml2-config ${BUILD_DIR}/bin/xml2-config
+cp ${SOURCE_DIR}/libxml2/xml2-config ${BUILD_DIR}/bin/xml2-config
 sed -i "s:prefix='':prefix='${BUILD_DIR}':g" ${BUILD_DIR}/bin/xml2-config
 
-./configure --prefix='' \
-            --enable-static \
-            --enable-shared \
-            --with-libxml-prefix=${BUILD_DIR} \
-            --with-libxml-include-prefix=${BUILD_DIR}/include \
-            --with-libxml-libs-prefix=${BUILD_DIR}/lib \
+export CFLAGS="$CFLAGS -DLIBXML_STATIC -DLIBXSLT_STATIC -DLIBEXSLT_STATIC"
+export CPPFLAGS="$CPPFLAGS -DLIBXML_STATIC -DLIBXSLT_STATIC -DLIBEXSLT_STATIC"
+
+./autogen.sh --prefix='' \
+             --enable-static \
+             --enable-shared \
+             --with-libxml-prefix=${BUILD_DIR} \
+             --with-libxml-include-prefix=${BUILD_DIR}/include \
+             --with-libxml-libs-prefix=${BUILD_DIR}/lib \
 
 if [ $? -ne 0 ]
 then
@@ -45,7 +53,9 @@ then
     exit 1
 fi
 
-V=1 make
+CFLAGS="$CFLAGS -DLIBXML_STATIC -DLIBXSLT_STATIC -DLIBEXSLT_STATIC" \
+V=1 \
+make
 
 if [ $? -ne 0 ]
 then
@@ -53,7 +63,10 @@ then
     exit 1
 fi
 
-make DESTDIR=${BUILD_DIR} install
+CFLAGS="$CFLAGS -DLIBXML_STATIC -DLIBXSLT_STATIC -DLIBEXSLT_STATIC" \
+V=1 \
+DESTDIR=${BUILD_DIR} \
+make install
 
 if [ $? -ne 0 ]
 then
