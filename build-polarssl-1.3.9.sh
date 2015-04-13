@@ -12,7 +12,7 @@ TARBALL_NAME="polarssl-1.3.9-gpl.tar"
 SOURCE_DIR_NAME="polarssl-1.3.9"
 
 pushd ${ARCHIVE_DIR} > /dev/null
-curl --retry 5 --remote-name -L ${URL} || exit 1
+${CURL} --retry 5 --remote-name -L ${URL} || exit 1
 popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null

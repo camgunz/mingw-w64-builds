@@ -13,7 +13,7 @@
 
 # pushd ${ARCHIVE_DIR} > /dev/null
 # echo "Downloading"
-# curl --retry 5 --remote-name -L ${URL} || exit 1
+# ${CURL} --retry 5 --remote-name -L ${URL} || exit 1
 # popd > /dev/null
 
 URL="git://git.gnome.org/libxml2"

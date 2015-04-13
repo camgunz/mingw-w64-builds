@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! "`which curl`" ]
+if [ ! "`which ${CURL}`" ]
 then
     echo "Couldn't find curl program, install curl"
     exit 1
@@ -18,7 +18,7 @@ then
     exit 1
 fi
 
-if [ ! "`which git`" ]
+if [ ! "`which ${GIT}`" ]
 then
     echo "Couldn't find git program, install Git"
     exit 1

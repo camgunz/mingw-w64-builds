@@ -16,7 +16,7 @@ then
     rm -rf ${SOURCE_DIR_NAME}
 fi
 
-git clone ${URL} || exit 1
+${GIT} clone ${URL} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
 

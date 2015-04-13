@@ -15,7 +15,7 @@ URL="git://git.gnome.org/libxslt"
 SOURCE_DIR_NAME="libxslt"
 
 # pushd ${ARCHIVE_DIR} > /dev/null
-# curl --retry 5 --remote-name -L ${URL} || exit 1
+# ${CURL} --retry 5 --remote-name -L ${URL} || exit 1
 # popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null

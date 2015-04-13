@@ -20,12 +20,12 @@ set -e
 # ./build-docbook.sh
 # ./build-itstool-2.0.2.sh
 # ./build-gtk-doc-1.21.sh
-./build-ragel-6.9.sh
-./build-freetype-2.5.5.sh
-./build-harfbuzz.sh
-./build-pixman-0.32.6.sh*
-./build-cairo-1.14.2.sh
-./build-pango-1.36.8.sh
+# ./build-ragel-6.9.sh
+# ./build-freetype-2.5.5.sh
+# ./build-harfbuzz.sh
+# ./build-pixman-0.32.6.sh*
+# ./build-cairo-1.14.2.sh
+# ./build-pango-1.36.8.sh
 ./build-gobject-introspection-1.31.22.sh
 ./build-lua-5.3.2.sh
 # LGI

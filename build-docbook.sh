@@ -16,7 +16,7 @@ TARBALL_NAME='docbook-xsl-1.78.1.tar'
 SOURCE_DIR_NAME='docbook-xsl-1.78.1'
 
 pushd ${ARCHIVE_DIR} > /dev/null
-curl --retry 5 --remote-name -L ${URL} || exit 1
+${CURL} --retry 5 --remote-name -L ${URL} || exit 1
 popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null
@@ -65,7 +65,7 @@ do
     fi
 
     pushd ${ARCHIVE_DIR} > /dev/null
-    curl --retry 5 --remote-name -L ${url} || exit 1
+    ${CURL} --retry 5 --remote-name -L ${url} || exit 1
     popd > /dev/null
 
     if [ -d ${source_dir_name} ]

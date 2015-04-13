@@ -12,7 +12,7 @@ TARBALL_NAME="curl-7.41.0.tar"
 SOURCE_DIR_NAME="curl-7.41.0"
 
 pushd ${ARCHIVE_DIR} > /dev/null
-curl --retry 5 --remote-name -L ${URL} || exit 1
+${CURL} --retry 5 --remote-name -L ${URL} || exit 1
 popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null
