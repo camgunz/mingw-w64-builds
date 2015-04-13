@@ -1,0 +1,95 @@
+--- giscanner/giscannermodule.c.orig	2015-03-28 10:35:35 -0400
++++ giscanner/giscannermodule.c	2015-03-28 10:39:11 -0400
+@@ -410,7 +410,7 @@
+   if (!PyArg_ParseTuple (args, "i:SourceScanner.parse_file", &fd))
+     return NULL;
+ 
+-#ifdef _WIN32
++#if 0
+   /* The file descriptor passed to us is from the C library Python
+    * uses. That is msvcr71.dll for Python 2.5 and msvcr90.dll for
+    * Python 2.6, 2.7, etc. This code, at least if compiled with mingw, uses
+--- giscanner/gdumpparser.py.orig	2015-04-05 19:12:28 -0400
++++ giscanner/gdumpparser.py	2015-04-05 19:13:00 -0400
+@@ -499,6 +499,10 @@
+         except TransformerException as e:
+             message.fatal(e)
+         pair_node = self._namespace.get(name)
++        while isinstance(pair_node, ast.Alias):
++            pair_node = pair_node.target
++            assert pair_node
++            pair_node = self._namespace.get(pair_node.unresolved_string)
+         if not pair_node:
+             # Keep the "bare" boxed instance
+             self._namespace.append(boxed)
+--- giscanner/dumper.py.orig	2015-04-12 22:37:48 -0400
++++ giscanner/dumper.py	2015-04-12 22:37:54 -0400
+@@ -96,6 +96,9 @@
+         # sysadmins who mount /tmp noexec
+         tmpdir = tempfile.mkdtemp('', 'tmp-introspect', dir=os.getcwd())
+ 
++        if not os.path.isdir(os.path.join(tmpdir, '.libs')):
++            os.mkdir(os.path.join(tmpdir, '.libs'))
++
+         tpl_args = {}
+         if self._uninst_srcdir is not None:
+             gdump_path = os.path.join(self._uninst_srcdir, 'girepository', 'gdump.c')
+@@ -146,7 +146,7 @@
+         o_path = self._generate_tempfile(tmpdir, '.o')
+ 
+         if os.name == 'nt':
+-            ext = 'exe'
++            ext = '.exe'
+         else:
+             ext = ''
+ 
+@@ -212,7 +212,7 @@
+             raise CompilerError(e)
+ 
+     def _link(self, output, *sources):
+-        args = []
++        args = ['C:/msys/bin/bash.exe']
+         libtool = utils.get_libtool_command(self._options)
+         if libtool:
+             args.extend(libtool)
+@@ -253,6 +253,7 @@
+             print "g-ir-scanner: link: %s" % (
+                 subprocess.list2cmdline(args), )
+             sys.stdout.flush()
++        args = [x.replace('\\', '/') for x in args]
+         try:
+             subprocess.check_call(args)
+         except subprocess.CalledProcessError, e:
+--- giscanner/shlibs.py.orig	2015-04-12 23:55:29 -0400
++++ giscanner/shlibs.py	2015-04-12 23:55:47 -0400
+@@ -69,18 +69,18 @@
+     if not libraries:
+         return []
+ 
+-    if os.uname()[0] == 'OpenBSD':
+-        # Hack for OpenBSD when using the ports' libtool which uses slightly
+-        # different directories to store the libraries in. So rewite binary.args[0]
+-        # by inserting '.libs/'.
+-        old_argdir = binary.args[0]
+-        new_libsdir = os.path.join(os.path.dirname(binary.args[0]), '.libs/')
+-        new_lib = new_libsdir + os.path.basename(binary.args[0])
+-        if os.path.exists(new_lib):
+-            binary.args[0] = new_lib
+-            os.putenv('LD_LIBRARY_PATH', new_libsdir)
+-        else:
+-            binary.args[0] = old_argdir
++    # if os.uname()[0] == 'OpenBSD':
++    #     # Hack for OpenBSD when using the ports' libtool which uses slightly
++    #     # different directories to store the libraries in. So rewite binary.args[0]
++    #     # by inserting '.libs/'.
++    #     old_argdir = binary.args[0]
++    #     new_libsdir = os.path.join(os.path.dirname(binary.args[0]), '.libs/')
++    #     new_lib = new_libsdir + os.path.basename(binary.args[0])
++    #     if os.path.exists(new_lib):
++    #         binary.args[0] = new_lib
++    #         os.putenv('LD_LIBRARY_PATH', new_libsdir)
++    #     else:
++    #         binary.args[0] = old_argdir
+ 
+     if os.name == 'nt':
+         shlibs = []
