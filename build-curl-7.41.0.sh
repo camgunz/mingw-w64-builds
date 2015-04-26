@@ -31,8 +31,8 @@ export CFLAGS="$CFLAGS -DCURL_STATICLIB"
 
 #             --with-polarssl=$PREFIX \
 ./configure --prefix="" \
+            --disable-shared \
             --enable-static \
-            --enable-shared \
             --enable-ares=${BUILD_DIR} \
             --enable-ipv6 \
             --with-winidn \

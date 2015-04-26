@@ -12,7 +12,7 @@ TARBALL_NAME='SDL-1.2.15.tar'
 SOURCE_DIR_NAME='SDL-1.2.15'
 
 pushd ${ARCHIVE_DIR} > /dev/null
-${CURL} --retry 5 --remote-name -L ${URL} || exit 1
+${CURL} -k --retry 5 --remote-name -L ${URL} || exit 1
 popd > /dev/null
 
 pushd ${SOURCE_DIR} > /dev/null

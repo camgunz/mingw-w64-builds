@@ -6,7 +6,7 @@
 
 ./check_prereqs.sh
 
-URL="http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/1.31/gobject-introspection-1.44.0.tar.xz"
+URL="http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/1.44/gobject-introspection-1.44.0.tar.xz"
 ARCHIVE_NAME="gobject-introspection-1.44.0.tar.xz"
 TARBALL_NAME="gobject-introspection-1.44.0.tar"
 SOURCE_DIR_NAME="gobject-introspection-1.44.0"
@@ -36,14 +36,22 @@ export PYTHON="${MINGW64_DIR}/opt/bin/python"
 export CFLAGS="-I${BUILD_DIR}/include"
 export CPPFLAGS="-I${BUILD_DIR}/include"
 export SCANNER_CFLAGS="-I${BUILD_DIR}/include"
-export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin"
+export LDFLAGS="${LDFLAGS} -L${MINGW64_DIR}/opt/bin -L/bin"
 
-cp ${BUILD_DIR}/lib/libgobject-2.0.la /lib/libgobject-2.0.la || exit 1
-cp ${BUILD_DIR}/lib/libgmodule-2.0.la /lib/libgmodule-2.0.la || exit 1
+cp ${BUILD_DIR}/lib/libgobject-2.0.la /lib/libgobject-2.0.la       || exit 1
+cp ${BUILD_DIR}/lib/libgmodule-2.0.la /lib/libgmodule-2.0.la       || exit 1
+cp ${BUILD_DIR}/lib/libglib-2.0.la /lib/libglib-2.0.la             || exit 1
+cp ${BUILD_DIR}/lib/libffi.la /lib/libffi.la                       || exit 1
+
 cp ${BUILD_DIR}/lib/libgobject-2.0.dll.a /lib/libgobject-2.0.dll.a
 cp ${BUILD_DIR}/lib/libgmodule-2.0.dll.a /lib/libgmodule-2.0.dll.a
 cp ${BUILD_DIR}/lib/libglib-2.0.dll.a /lib/libglib-2.0.dll.a
 cp ${BUILD_DIR}/lib/../lib/libffi.dll.a /lib/../lib/libffi.dll.a
+
+cp ${BUILD_DIR}/bin/libgobject-2.0.dll /bin/libgobject-2.0.dll
+cp ${BUILD_DIR}/lib/libgmodule-2.0.dll /bin/libgmodule-2.0.dll
+cp ${BUILD_DIR}/lib/libglib-2.0.dll /bin/libglib-2.0.dll
+cp ${BUILD_DIR}/lib/../lib/libffi.dll /bin/../lib/libffi.dll
 
 cp ${BUILD_DIR}/include/libintl.h .
 

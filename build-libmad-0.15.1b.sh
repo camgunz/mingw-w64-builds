@@ -39,6 +39,8 @@ $CC $CFLAGS -shared .libs/*.o -o .libs/libmad.dll \
   || exit 1
 
 make DESTDIR=${BUILD_DIR} install || exit 1
+cp .libs/libmad.dll ${BUILD_DIR}/bin || exit 1
+cp .libs/libmad.dll.a ${BUILD_DIR}/lib || exit 1
 
 popd > /dev/null
 popd > /dev/null
