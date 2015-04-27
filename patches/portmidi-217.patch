@@ -1,0 +1,64 @@
+--- CMakeLists.txt	2010-09-20 15:57:48.000000000 -0400
++++ CMakeLists.txt	2014-05-16 10:06:11.798697172 -0400
+@@ -4,6 +4,7 @@
+ 
+ cmake_minimum_required(VERSION 2.6)
+ 
++set(CMAKE_CACHEFILE_DIR ${PROJECT_BINARY_DIR})
+ if(UNIX)
+   # allow user to set Release or Debug
+   set(CMAKE_BUILD_TYPE Release CACHE STRING 
+@@ -73,5 +74,5 @@
+ add_subdirectory(pm_dylib)
+ 
+ # Cannot figure out how to make an xcode Java application with CMake
+-add_subdirectory(pm_java)
++# add_subdirectory(pm_java)
+ 
+--- pm_common/CMakeLists.txt	2010-09-20 15:57:48.000000000 -0400
++++ pm_common/CMakeLists.txt	2014-05-14 11:34:40.299926942 -0400
+@@ -88,9 +88,9 @@
+     # /MD is multithread DLL, /MT is multithread. Change to static:
+     include(../pm_win/static.cmake)
+     
+-    include(FindJNI)
++    # include(FindJNI)
+ 
+-    set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2})
++    # set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2})
+     # message(STATUS "JAVA_INCLUDE_PATHS: " ${JAVA_INCLUDE_PATHS})
+ 
+     set(WINSRC pmwin pmwinmm)
+@@ -99,7 +99,7 @@
+     set(PM_NEEDED_LIBS winmm.lib)
+   endif(WIN32)
+ endif(UNIX)
+-set(JNI_EXTRA_LIBS ${PM_NEEDED_LIBS} ${JAVA_JVM_LIBRARY})
++# set(JNI_EXTRA_LIBS ${PM_NEEDED_LIBS} ${JAVA_JVM_LIBRARY})
+ 
+ # this completes the list of library sources by adding shared code
+ list(APPEND LIBSRC pmutil portmidi)
+@@ -110,16 +110,17 @@
+ target_link_libraries(portmidi-static ${PM_NEEDED_LIBS})
+ 
+ # define the jni library
+-include_directories(${JAVA_INCLUDE_PATHS})
++# include_directories(${JAVA_INCLUDE_PATHS})
+ 
+-set(JNISRC ${LIBSRC} ../pm_java/pmjni/pmjni.c)
+-add_library(pmjni SHARED ${JNISRC})
+-target_link_libraries(pmjni ${JNI_EXTRA_LIBS})
+-set_target_properties(pmjni PROPERTIES EXECUTABLE_EXTENSION "jnilib")
++# set(JNISRC ${LIBSRC} ../pm_java/pmjni/pmjni.c)
++# add_library(pmjni SHARED ${JNISRC})
++# target_link_libraries(pmjni ${JNI_EXTRA_LIBS})
++# set_target_properties(pmjni PROPERTIES EXECUTABLE_EXTENSION "jnilib")
+ 
+ # install the libraries (Linux and Mac OS X command line)
+ if(UNIX)
+-  INSTALL(TARGETS portmidi-static pmjni
++  # INSTALL(TARGETS portmidi-static pmjni
++  INSTALL(TARGETS portmidi-static
+     LIBRARY DESTINATION /usr/local/lib
+     ARCHIVE DESTINATION /usr/local/lib)
+ # .h files installed by pm_dylib/CMakeLists.txt, so don't need them here
