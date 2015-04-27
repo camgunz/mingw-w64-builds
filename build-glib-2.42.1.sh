@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL="http://ftp.gnome.org/pub/gnome/sources/glib/2.44/glib-2.44.0.tar.xz"
-ARCHIVE_NAME="glib-2.44.0.tar.xz"
-TARBALL_NAME="glib-2.44.0.tar"
-SOURCE_DIR_NAME="glib-2.44.0"
+URL="http://ftp.gnome.org/pub/gnome/sources/glib/2.44/glib-2.42.2.tar.xz"
+ARCHIVE_NAME="glib-2.42.2.tar.xz"
+TARBALL_NAME="glib-2.42.2.tar"
+SOURCE_DIR_NAME="glib-2.42.2"
 
 pushd ${ARCHIVE_DIR} > /dev/null
 ${CURL} --retry 5 --remote-name -L ${URL} || exit 1

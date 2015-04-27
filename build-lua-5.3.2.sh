@@ -28,7 +28,14 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 pushd ${SOURCE_DIR_NAME} > /dev/null
 make mingw -j 1
 make DESTDIR=${BUILD_DIR} install
-popd > /dev/null
 
+mv /usr/local/include/lua.h ${BUILD_DIR}/include/ || exit 1
+mv /usr/local/include/luaconf.h ${BUILD_DIR}/include/ || exit 1
+mv /usr/local/include/lualib.h ${BUILD_DIR}/include/ || exit 1
+mv /usr/local/include/lauxlib.h ${BUILD_DIR}/include/ || exit 1
+mv /usr/local/include/lua.hpp ${BUILD_DIR}/include/ || exit 1
+mv /usr/local/lib/liblua.a ${BUILD_DIR}/lib/ || exit 1
+
+popd > /dev/null
 popd > /dev/null
 
