@@ -28,7 +28,7 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 pushd ${SOURCE_DIR_NAME} > /dev/null
 export CFLAGS=""
 ./configure --prefix="" \
-            --disable-shared \
+            --enable-shared \
             --enable-static \
             --enable-nonblocking \
             || exit 1

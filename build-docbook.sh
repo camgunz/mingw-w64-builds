@@ -464,11 +464,14 @@ echo `pwd`
 install -dm755 ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1
 install -m644 VERSION VERSION.xsl ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1
 
-for x in assembly common eclipse epub epub3 fo highlighting html htmlhelp javahelp lib \
-         manpages params profiling roundtrip template website xhtml xhtml-1_1 xhtml5
+for x in assembly common eclipse epub epub3 fo highlighting html htmlhelp \
+         javahelp lib manpages params profiling roundtrip template website \
+         xhtml xhtml-1_1 xhtml5
 do
     install -dm755 ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1/${x}
-    install -m644 ${x}/*.{xml,xsl,dtd,ent} ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1/${x} || true  # ignore missing files
+    install -m644 ${x}/*.{xml,xsl,dtd,ent} \
+                  ${BUILD_DIR}/share/xml/docbook/xsl-stylesheets-1.78.1/${x} \
+                  || true  # ignore missing files
 done
 
 install -dm755 ${BUILD_DIR}/etc/xml

@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL="https://tls.mbed.org/download/mbedtls-1.3.11-gpl.tgz"
-ARCHIVE_NAME="mbedtls-1.3.11-gpl.tgz"
-TARBALL_NAME="mbedtls-1.3.11-gpl.tar"
-SOURCE_DIR_NAME="mbedtls-1.3.11"
+URL="http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.bz2"
+ARCHIVE_NAME="fontconfig-2.11.1.tar.bz2"
+TARBALL_NAME="fontconfig-2.11.1.tar"
+SOURCE_DIR_NAME="fontconfig-2.11.1"
 
 pushd ${ARCHIVE_DIR} > /dev/null
 ${CURL} --retry 5 --remote-name --insecure -L ${URL} || exit 1
@@ -24,12 +24,13 @@ fi
 tar xf ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
 rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} || exit 1
 
-patch -p0 -f -i "${PATCH_DIR}/mbedtls-1.3.11-copy-to-ln.patch"
-
 pushd ${SOURCE_DIR_NAME} > /dev/null
 
-make WINDOWS=1
-make WINDOWS=1 DESTDIR=${BUILD_DIR} install
+./configure --enable-shared \
+            --enable-static \
+            --prefix="${BUILD_DIR}"
+
+make && make install
 
 popd > /dev/null
 popd > /dev/null

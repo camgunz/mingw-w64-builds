@@ -6,10 +6,10 @@
 
 ./check_prereqs.sh
 
-URL="http://curl.haxx.se/download/curl-7.41.0.tar.bz2"
-ARCHIVE_NAME="curl-7.41.0.tar.bz2"
-TARBALL_NAME="curl-7.41.0.tar"
-SOURCE_DIR_NAME="curl-7.41.0"
+URL="http://curl.haxx.se/download/curl-7.43.0.tar.bz2"
+ARCHIVE_NAME="curl-7.43.0.tar.bz2"
+TARBALL_NAME="curl-7.43.0.tar"
+SOURCE_DIR_NAME="curl-7.43.0"
 
 pushd ${ARCHIVE_DIR} > /dev/null
 ${CURL} --retry 5 --remote-name -L ${URL} || exit 1
@@ -27,18 +27,19 @@ rm -f ${ARCHIVE_DIR}/${ARCHIVE_NAME} ${ARCHIVE_DIR}/${TARBALL_NAME} || exit 1
 
 pushd ${SOURCE_DIR_NAME} > /dev/null
 
-export CFLAGS="$CFLAGS -DCURL_STATICLIB"
+export CFLAGS=""
+export CPPFLAGS="$CPPFLAGS -DCURL_STATICLIB"
 
-#             --with-polarssl=$PREFIX \
 ./configure --prefix="" \
-            --disable-shared \
+            --enable-shared \
             --enable-static \
             --enable-ares=${BUILD_DIR} \
+            --with-polarssl=${BUILD_DIR} \
             --enable-ipv6 \
             --with-winidn \
             --disable-threaded-resolver \
             || exit 1
-make -j 1
+make
 make DESTDIR=${BUILD_DIR} install
 
 popd > /dev/null

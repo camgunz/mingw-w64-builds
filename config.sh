@@ -11,6 +11,7 @@ export MINGW64_DIR='/c/mingw-w64/i686-4.9.2-posix-sjlj-rt_v3-rev1/mingw32'
 
 export PYTHON="${MINGW64_DIR}/opt/bin/python"
 export PYTHON_DIR="${MINGW64_DIR}/opt/bin"
+export PYTHON_SITE_PACKAGES="${MINGW64_DIR}/opt/lib/python2.7/site-packages"
 
 export AR="${MINGW64_DIR}/bin/ar"
 export AS="${MINGW64_DIR}/bin/as"
@@ -32,6 +33,7 @@ export CPPFLAGS="-I${BUILD_DIR}/include -I${BUILD_DIR}/include -I${MINGW64_DIR}/
 export CXXFLAGS="-I${BUILD_DIR}/include"
 export LDFLAGS="-L${BUILD_DIR}/bin -L${BUILD_DIR}/lib -L${PYTHON_DIR}"
 export PKG_CONFIG_PATH="${BUILD_DIR}/lib/pkgconfig"
+export GOBJECT_INTROSPECTION_LIB_SEARCH_PATH="${BUILD_DIR}/bin:${BUILD_DIR}/lib"
 # export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig"
 # export PKG_CONFIG_SYSROOT_DIR="$PREFIX"
 # export ARFLAGS="rcs"
