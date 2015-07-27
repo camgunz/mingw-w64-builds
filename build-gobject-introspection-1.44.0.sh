@@ -70,7 +70,7 @@ cp ${BUILD_DIR}/include/libintl.h .
 SCANNER_CFLAGS="-I${BUILD_DIR}/include" \
 CFLAGS="-I${BUILD_DIR}/include" \
 CPPFLAGS="-I${BUILD_DIR}/include" \
-make -j 5 V=1 VERBOSE=1 || exit 1
+make || exit 1
 
 SCANNER_CFLAGS="-I${BUILD_DIR}/include" \
 CFLAGS="-I${BUILD_DIR}/include" \

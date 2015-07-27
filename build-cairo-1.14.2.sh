@@ -39,7 +39,7 @@ CFLAGS='-fno-lto -D__USE_MINGW_ANSI_STDIO=1 -Wno-error -include math.h' \
     || exit 1
 
 CFLAGS='-fno-lto -D__USE_MINGW_ANSI_STDIO=1 -Wno-error -include math.h' \
-  make -j 1 || exit 1
+  make || exit 1
 
 make DESTDIR=${BUILD_DIR} install || exit 1
 

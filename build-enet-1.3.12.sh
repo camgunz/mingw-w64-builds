@@ -31,7 +31,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
     --enable-static \
     --prefix="" \
     || exit 1
-make -j 1
+make
 make DESTDIR=${BUILD_DIR} install
 
 popd > /dev/null

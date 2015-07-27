@@ -25,10 +25,10 @@ set -e
 # ./build-harfbuzz.sh
 # ./build-pixman-0.32.6.sh*
 # ./build-cairo-1.14.2.sh
-# ./build-pango-1.36.8.sh
+./build-pango-1.36.8.sh
 # ./build-gobject-introspection-1.31.22.sh
-./build-lua-5.3.1.sh
-./build-lgi.sh
+# ./build-lua-5.3.1.sh
+# ./build-lgi.sh
 # ./build-libogg-1.3.1.sh
 # ./build-libvorbis-1.3.4.sh
 # ./build-flac-1.3.0.sh

@@ -33,7 +33,7 @@ echo 'include make/unix.inc' > make/config.txt
 echo 'ALL_TARGETS := core core-examples core-headers' >> make/config.txt
 echo "PREFIX := ${BUILD_DIR}" >> make/config.txt
 
-make -j 1 && make DESTDIR=${BUILD_DIR} install || exit 1
+make && make DESTDIR=${BUILD_DIR} install || exit 1
 
 popd > /dev/null
 popd > /dev/null

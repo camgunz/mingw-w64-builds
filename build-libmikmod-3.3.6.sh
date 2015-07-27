@@ -41,7 +41,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
             --with-sdl-prefix=$PREFIX \
             || exit 1
 
-make -j 1 || exit 1
+make || exit 1
 make DESTDIR=${BUILD_DIR} install || exit 1
 
 popd > /dev/null

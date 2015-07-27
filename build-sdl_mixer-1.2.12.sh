@@ -47,7 +47,7 @@ mv ${BUILD_DIR}/lib/libSDLmain.la ${BUILD_DIR}/lib/libSDLmain.la.bak
             --enable-music-flac-shared \
             --enable-music-mp3-shared \
             || exit 1
-make -j 1
+make
 make DESTDIR=${BUILD_DIR} install
 
 popd > /dev/null

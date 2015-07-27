@@ -31,7 +31,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
     --enable-static \
     --prefix="" \
     || exit 1
-make -j 1 || exit 1
+make || exit 1
 
 $CC $CFLAGS -shared .libs/*.o -o .libs/libmad.dll \
   -Xlinker --out-implib \

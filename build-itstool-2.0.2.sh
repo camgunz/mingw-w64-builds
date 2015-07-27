@@ -58,7 +58,7 @@ pushd ${SOURCE_DIR_NAME} > /dev/null
 cp -R "${PYTHON_SITE_PACKAGES}"/libxmlmods/* . || exit 1
 
 ./configure --prefix="" || exit 1
-make -j 1 || exit 1
+make || exit 1
 make DESTDIR=${BUILD_DIR} install || exit 1
 
 popd > /dev/null

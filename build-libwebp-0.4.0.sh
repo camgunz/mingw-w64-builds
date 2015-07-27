@@ -37,7 +37,7 @@ cp ${BUILD_DIR}/lib/libjpeg.dll.a /lib/libjpeg.dll.a
     --enable-static \
     --prefix="" \
     || exit 1
-make -j 1
+make
 make DESTDIR=${BUILD_DIR} install
 
 popd > /dev/null
